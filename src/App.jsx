@@ -4,10 +4,32 @@ import OutputCV from "./components/OutputCV";
 import "./App.css";
 
 function App() {
+  const [form, setForm] = useState({
+    name: "Thomas A. Anderson",
+    email: "ThomasAnderson@gmail.com",
+    phone: "+44 3245 5521 5521",
+    address: "Lower Downtown, Capital City, USA",
+  });
+  
+  /**
+   * Handles changes to the form fields by updating the specific field in the form state.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e - The event object generated when an input field changes.
+   * @param {string} field - The name of the field to be updated (e.g., "name", "email", etc.).
+   *
+   * @returns {void} This function does not return anything; it updates the form state directly.
+   */
+  function handleFormChange(e, field) {
+    let prevForm = { ...form };
+    prevForm[field] = e.target.value;
+
+    setForm(prevForm);
+  }
+
   return (
     <>
-      <InputForm></InputForm>
-      <OutputCV></OutputCV>
+      <InputForm form={form} onChange={handleFormChange}></InputForm>
+      <OutputCV form={form}></OutputCV>
     </>
   );
 }

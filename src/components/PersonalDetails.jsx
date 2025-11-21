@@ -1,6 +1,6 @@
 import "../styles/PersonalDetails.css";
 
-export default function PersonalDetails() {
+export default function PersonalDetails({ form, onChange }) {
   return (
     <form className="personal-details">
       <h1>Personal Details</h1>
@@ -9,14 +9,18 @@ export default function PersonalDetails() {
         <input
           type="text"
           className="form-control"
+          onChange={(e) => onChange(e, "name")}
+          value={form.name}
           placeholder="Enter your full name"
         />
       </div>
       <h3>Email</h3>
       <div className="input-group">
         <input
-          type="text"
+          type="email"
           className="form-control"
+          onChange={(e) => onChange(e, "email")}
+          value={form.email}
           placeholder="Enter your email"
         />
       </div>
@@ -25,6 +29,8 @@ export default function PersonalDetails() {
         <input
           type="tel"
           className="form-control"
+          onChange={(e) => onChange(e, "phone")}
+          value={form.phone}
           placeholder="Enter your phone number"
         />
       </div>
@@ -33,6 +39,8 @@ export default function PersonalDetails() {
         <input
           type="text"
           className="form-control"
+          onChange={(e) => onChange(e, "address")}
+          value={form.address}
           placeholder="Enter your address"
         />
       </div>
