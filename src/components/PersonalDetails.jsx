@@ -1,49 +1,41 @@
 import "../styles/PersonalDetails.css";
 
-export default function PersonalDetails({ form, onChange }) {
+export default function PersonalDetails({ form, onChange, FormInput }) {
   return (
     <form className="personal-details">
       <h1>Personal Details</h1>
       <h3>Full Name</h3>
-      <div className="input-group">
-        <input
-          type="text"
-          className="form-control"
-          onChange={(e) => onChange(e, "name")}
-          value={form.name}
-          placeholder="Enter your full name"
-        />
-      </div>
+      <FormInput
+        value={form.name}
+        onChange={onChange}
+        field="name"
+        type="text"
+        placeholder="Enter your full name"
+      />
       <h3>Email</h3>
-      <div className="input-group">
-        <input
-          type="email"
-          className="form-control"
-          onChange={(e) => onChange(e, "email")}
-          value={form.email}
-          placeholder="Enter your email"
-        />
-      </div>
+      <FormInput
+        value={form.email}
+        onChange={onChange}
+        field="email"
+        type="email"
+        placeholder="Enter your email"
+      />
       <h3>Phone Number</h3>
-      <div className="input-group">
-        <input
-          type="tel"
-          className="form-control"
-          onChange={(e) => onChange(e, "phone")}
-          value={form.phone}
-          placeholder="Enter your phone number"
-        />
-      </div>
+      <FormInput
+        value={form.phone}
+        onChange={onChange}
+        field="phone"
+        type="text"
+        placeholder="Enter your phone number"
+      />
       <h3>Address</h3>
-      <div className="input-group">
-        <input
-          type="text"
-          className="form-control"
-          onChange={(e) => onChange(e, "address")}
-          value={form.address}
-          placeholder="Enter your address"
-        />
-      </div>
+      <FormInput
+        value={form.address}
+        onChange={onChange}
+        field="address"
+        type="text"
+        placeholder="Enter your address"
+      />
     </form>
   );
 }
