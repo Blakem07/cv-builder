@@ -1,10 +1,17 @@
 import "../styles/InputForm.css";
 import PersonalDetails from "./PersonalDetails";
+import ExpandableSection from "./ExpandableSection";
+import awardSvg from "../assets/award.svg";
 
 export default function InputForm({ form, onChange }) {
   return (
     <div className="input-form-container">
       <PersonalDetails form={form} onChange={onChange} FormInput={FormInput} />
+      <ExpandableSection
+        title="Work Experience"
+        icon={awardSvg}
+        content={"Put content here"}
+      />
     </div>
   );
 }

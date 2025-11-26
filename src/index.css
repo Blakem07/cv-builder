@@ -7,7 +7,7 @@
   background-color: #242424;
 
   --primary-color: var(--evergreen);
-  --secondary-color: white;
+  --secondary-color: #242424;
   --tertiary-color: rgb(240, 240, 240);
 
   --evergreen: #132a13;
