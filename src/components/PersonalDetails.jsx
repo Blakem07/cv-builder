@@ -1,6 +1,7 @@
 import "../styles/PersonalDetails.css";
+import FormInput from "./FormInput";
 
-export default function PersonalDetails({ form, onChange, FormInput }) {
+export default function PersonalDetails({ form, onChange }) {
   return (
     <form className="personal-details">
       <h1>Personal Details</h1>

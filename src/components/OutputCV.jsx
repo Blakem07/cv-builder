@@ -1,5 +1,6 @@
 import "../styles/OutputCV.css";
 import { mailSvg, phoneSvg, mapPinSvg } from "../assets";
+import CVItem from "./CVItem";
 
 export default function OutputCV({ form }) {
   return (
@@ -21,7 +22,26 @@ export default function OutputCV({ form }) {
           </h4>
         </div>
       </header>
-      <main></main>
+      <main>
+        <section className="education-section">
+          <div className="section-header">
+            <h2>Education</h2>
+          </div>
+          <div className="section-content">
+            {form.education.map((edu) => (
+              <CVItem
+                key={edu.id}
+                institution={`${edu.university}`}
+                achievement={edu.degree}
+                detail=""
+                startDate={edu.startDate}
+                endDate={edu.endDate}
+                city={edu.city}
+              />
+            ))}
+          </div>
+        </section>
+      </main>
     </div>
   );
 }

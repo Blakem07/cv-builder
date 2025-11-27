@@ -1,0 +1,15 @@
+.cv-item {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.cv-item-title {
+  font-weight: bold;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
