@@ -4,7 +4,7 @@ import FormInput from "./FormInput";
 import { useState } from "react";
 
 export default function UniversityItem({
-  education,
+  handleUniversityChange,
   id,
   university,
   degree,
@@ -13,8 +13,6 @@ export default function UniversityItem({
   city,
 }) {
   const [isOpen, setIsOpen] = useState(false);
-
-  // Todo : Implement onChange handlers to update education details
 
   return (
     <div className="university-item">
@@ -27,35 +25,45 @@ export default function UniversityItem({
       <form className={isOpen ? "university-form open" : "university-form"}>
         <FormInput
           value={university}
-          onChange={() => {}}
+          onChange={(e) => {
+            handleUniversityChange(e, id, "university");
+          }}
           field="university"
           type="text"
           placeholder="University Name"
         />
         <FormInput
           value={degree}
-          onChange={() => {}}
+          onChange={(e) => {
+            handleUniversityChange(e, id, "degree");
+          }}
           field="degree"
           type="text"
           placeholder="Degree"
         />
         <FormInput
           value={startDate}
-          onChange={() => {}}
+          onChange={(e) => {
+            handleUniversityChange(e, id, "startDate");
+          }}
           field="startDate"
           type="month"
           placeholder="Start Date"
         />
         <FormInput
           value={endDate}
-          onChange={() => {}}
+          onChange={(e) => {
+            handleUniversityChange(e, id, "endDate");
+          }}
           field="endDate"
           type="month"
           placeholder="End Date"
         />
         <FormInput
           value={city}
-          onChange={() => {}}
+          onChange={(e) => {
+            handleUniversityChange(e, id, "city");
+          }}
           field="city"
           type="text"
           placeholder="City"

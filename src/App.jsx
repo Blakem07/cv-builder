@@ -14,16 +14,16 @@ function App() {
         id: 1,
         university: "University of Example",
         degree: "BSc Computer Science",
-        startDate: "2018/09",
-        endDate: "2021/06",
+        startDate: "2018-09",
+        endDate: "2021-06",
         city: "London",
       },
       {
         id: 2,
         university: "Example Institute of Technology",
         degree: "MSc Software Engineering",
-        startDate: "2021/09",
-        endDate: "Present",
+        startDate: "2021-09",
+        endDate: "2023-09",
         city: "Manchester",
       },
     ],
@@ -44,9 +44,24 @@ function App() {
     setForm(prevForm);
   }
 
+  function handleUniversityChange(e, id, field) {
+    const value = e.target.value;
+
+    setForm((prevForm) => ({
+      ...prevForm,
+      education: prevForm.education.map((edu) =>
+        edu.id === id ? { ...edu, [field]: value } : edu
+      ),
+    }));
+  }
+
   return (
     <>
-      <InputForm form={form} onChange={handleFormChange}></InputForm>
+      <InputForm
+        form={form}
+        onChange={handleFormChange}
+        handleUniversityChange={handleUniversityChange}
+      ></InputForm>
       <OutputCV form={form}></OutputCV>
     </>
   );

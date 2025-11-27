@@ -1,11 +1,15 @@
 import UniversityItem from "./UniversityItem";
 import "../styles/EducationSection.css";
 
-export default function EducationSection({ education }) {
+export default function EducationSection({
+  education,
+  handleUniversityChange,
+}) {
   return (
     <div className="education-section">
       {education.map((edu) => (
         <UniversityItem
+          handleUniversityChange={handleUniversityChange}
           id={edu.id}
           university={edu.university}
           degree={edu.degree}
