@@ -30,6 +30,9 @@
 
 /* Sliding content */
 .content {
+  display: flex;
+  flex-direction: column;
+
   max-height: 0; /* start collapsed */
   overflow: hidden; /* hide the content when collapsed */
   opacity: 0; /* fade in/out */
@@ -40,5 +43,5 @@
 .content.open {
   max-height: 500px;
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(5px);
 }

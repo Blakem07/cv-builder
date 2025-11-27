@@ -9,8 +9,26 @@ function App() {
     email: "ThomasAnderson@gmail.com",
     phone: "+44 3245 5521 5521",
     address: "Lower Downtown, Capital City, USA",
+    education: [
+      {
+        id: 1,
+        university: "University of Example",
+        degree: "BSc Computer Science",
+        startDate: "2018-09",
+        endDate: "2021-06",
+        city: "London",
+      },
+      {
+        id: 2,
+        university: "Example Institute of Technology",
+        degree: "MSc Software Engineering",
+        startDate: "2021-09",
+        endDate: "2023-06",
+        city: "Manchester",
+      },
+    ],
   });
-  
+
   /**
    * Handles changes to the form fields by updating the specific field in the form state.
    *
