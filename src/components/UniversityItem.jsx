@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function UniversityItem({
   handleUniversityChange,
+  handleDeleteUniversity,
   id,
   university,
   degree,
@@ -68,6 +69,13 @@ export default function UniversityItem({
           type="text"
           placeholder="City"
         />
+        <button
+          onClick={(e) => {
+            handleDeleteUniversity(e, id);
+          }}
+        >
+          Delete
+        </button>
       </form>
     </div>
   );

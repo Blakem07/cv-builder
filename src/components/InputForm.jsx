@@ -4,7 +4,12 @@ import ExpandableSection from "./ExpandableSection";
 import EducationSection from "./EducationSection";
 import awardSvg from "../assets/award.svg";
 
-export default function InputForm({ form, onChange, handleUniversityChange }) {
+export default function InputForm({
+  form,
+  onChange,
+  handleUniversityChange,
+  handleDeleteUniversity,
+}) {
   return (
     <div className="input-form-container">
       <PersonalDetails form={form} onChange={onChange} />
@@ -15,6 +20,7 @@ export default function InputForm({ form, onChange, handleUniversityChange }) {
           <EducationSection
             education={form.education}
             handleUniversityChange={handleUniversityChange}
+            handleDeleteUniversity={handleDeleteUniversity}
           />
         }
       />

@@ -3,31 +3,33 @@ import InputForm from "./components/InputForm";
 import OutputCV from "./components/OutputCV";
 import "./App.css";
 
+const defaultForm = {
+  name: "Thomas A. Anderson",
+  email: "ThomasAnderson@gmail.com",
+  phone: "+44 3245 5521 5521",
+  address: "Lower Downtown, Capital City, USA",
+  education: [
+    {
+      id: 1,
+      university: "University of Example",
+      degree: "BSc Computer Science",
+      startDate: "2018-09",
+      endDate: "2021-06",
+      city: "London",
+    },
+    {
+      id: 2,
+      university: "Example Institute of Technology",
+      degree: "MSc Software Engineering",
+      startDate: "2021-09",
+      endDate: "2023-09",
+      city: "Manchester",
+    },
+  ],
+};
+
 function App() {
-  const [form, setForm] = useState({
-    name: "Thomas A. Anderson",
-    email: "ThomasAnderson@gmail.com",
-    phone: "+44 3245 5521 5521",
-    address: "Lower Downtown, Capital City, USA",
-    education: [
-      {
-        id: 1,
-        university: "University of Example",
-        degree: "BSc Computer Science",
-        startDate: "2018-09",
-        endDate: "2021-06",
-        city: "London",
-      },
-      {
-        id: 2,
-        university: "Example Institute of Technology",
-        degree: "MSc Software Engineering",
-        startDate: "2021-09",
-        endDate: "2023-09",
-        city: "Manchester",
-      },
-    ],
-  });
+  const [form, setForm] = useState(defaultForm);
 
   /**
    * Handles changes to the form fields by updating the specific field in the form state.
@@ -55,12 +57,22 @@ function App() {
     }));
   }
 
+  function handleDeleteUniversity(e, id) {
+    e.preventDefault();
+
+    setForm((prevForm) => ({
+      ...prevForm,
+      education: prevForm.education.filter((edu) => edu.id !== id),
+    }));
+  }
+
   return (
     <>
       <InputForm
         form={form}
         onChange={handleFormChange}
         handleUniversityChange={handleUniversityChange}
+        handleDeleteUniversity={handleDeleteUniversity}
       ></InputForm>
       <OutputCV form={form}></OutputCV>
     </>
