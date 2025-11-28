@@ -1,5 +1,6 @@
 .university-item-button {
   height: auto;
+  min-height: 2.5rem;
   width: 100%;
   border-radius: 5px;
 

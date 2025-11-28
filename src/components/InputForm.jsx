@@ -7,8 +7,10 @@ import awardSvg from "../assets/award.svg";
 export default function InputForm({
   form,
   onChange,
+  openEducationId,
   handleUniversityChange,
   handleDeleteUniversity,
+  handleAddUniversity,
 }) {
   return (
     <div className="input-form-container">
@@ -19,8 +21,10 @@ export default function InputForm({
         content={
           <EducationSection
             education={form.education}
+            openEducationId={openEducationId}
             handleUniversityChange={handleUniversityChange}
             handleDeleteUniversity={handleDeleteUniversity}
+            handleAddUniversity={handleAddUniversity}
           />
         }
       />

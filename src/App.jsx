@@ -30,6 +30,7 @@ const defaultForm = {
 
 function App() {
   const [form, setForm] = useState(defaultForm);
+  const [openEducationId, setOpenEducationId] = useState(null);
 
   /**
    * Handles changes to the form fields by updating the specific field in the form state.
@@ -66,13 +67,33 @@ function App() {
     }));
   }
 
+  function handleAddUniversity() {
+    const newUniversity = {
+      id: Date.now(),
+      university: "",
+      degree: "",
+      startDate: "",
+      endDate: "",
+      city: "",
+    };
+
+    setForm((prevForm) => ({
+      ...prevForm,
+      education: [...prevForm.education, newUniversity],
+    }));
+
+    setOpenEducationId(newUniversity.id);
+  }
+
   return (
     <>
       <InputForm
         form={form}
         onChange={handleFormChange}
+        openEducationId={openEducationId}
         handleUniversityChange={handleUniversityChange}
         handleDeleteUniversity={handleDeleteUniversity}
+        handleAddUniversity={handleAddUniversity}
       ></InputForm>
       <OutputCV form={form}></OutputCV>
     </>

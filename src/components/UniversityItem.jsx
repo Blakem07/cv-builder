@@ -4,6 +4,7 @@ import FormInput from "./FormInput";
 import { useState } from "react";
 
 export default function UniversityItem({
+  openEducationId,
   handleUniversityChange,
   handleDeleteUniversity,
   id,
@@ -13,7 +14,7 @@ export default function UniversityItem({
   endDate,
   city,
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(openEducationId === id);
 
   return (
     <div className="university-item">

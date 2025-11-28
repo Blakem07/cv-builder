@@ -2,7 +2,7 @@ import "../styles/OutputCV.css";
 import { mailSvg, phoneSvg, mapPinSvg } from "../assets";
 import CVItem from "./CVItem";
 
-export default function OutputCV({ form, handleUniversityChange }) {
+export default function OutputCV({ form }) {
   return (
     <div className="output-cv-container">
       <header>
