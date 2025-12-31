@@ -1,5 +1,5 @@
 import UniversityItem from "./UniversityItem";
-import "../styles/EducationSection.css";
+import "../styles/Sections.css";
 import AddItemButton from "./AddItemButton";
 
 export default function EducationSection({

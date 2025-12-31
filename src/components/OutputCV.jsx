@@ -23,7 +23,7 @@ export default function OutputCV({ form }) {
         </div>
       </header>
       <main>
-        <section className="education-section">
+        <section className="section education-section">
           <div className="section-header">
             <h2>Education</h2>
           </div>
@@ -37,6 +37,24 @@ export default function OutputCV({ form }) {
                 startDate={edu.startDate}
                 endDate={edu.endDate}
                 city={edu.city}
+              />
+            ))}
+          </div>
+        </section>
+        <section className=" section professional-experience-section">
+          <div className="section-header">
+            <h2>Professional Experience</h2>
+          </div>
+          <div className="section-content">
+            {form.experience.map((exp) => (
+              <CVItem
+                key={exp.id}
+                institution={`${exp.company}`}
+                achievement={exp.position}
+                detail={`${exp.responsibilities}`}
+                startDate={exp.startDate}
+                endDate={exp.endDate}
+                city={exp.city}
               />
             ))}
           </div>

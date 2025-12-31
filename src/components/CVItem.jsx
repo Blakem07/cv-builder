@@ -17,8 +17,9 @@ export default function CVItem({
         <p className="cv-item-location">{city}</p>
       </div>
       <div className="right">
-        <h4 className="cv-item-tinstitution">{institution}</h4>
+        <h4 className="cv-item-institution">{institution}</h4>
         <p className="cv-item-achievement">{achievement}</p>
+        <p className="cv-item-detail">{detail}</p>
       </div>
     </div>
   );

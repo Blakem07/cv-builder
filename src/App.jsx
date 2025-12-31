@@ -5,9 +5,9 @@ import "./App.css";
 
 const defaultForm = {
   name: "Thomas A. Anderson",
-  email: "ThomasAnderson@gmail.com",
-  phone: "+44 3245 5521 5521",
-  address: "Lower Downtown, Capital City, USA",
+  email: "thomas.anderson@gmail.com",
+  phone: "+1 (212) 555-0152",
+  address: "New York, NY, USA",
   education: [
     {
       id: 1,
@@ -15,15 +15,43 @@ const defaultForm = {
       degree: "BSc Computer Science",
       startDate: "2018-09",
       endDate: "2021-06",
-      city: "London",
+      city: "New York, NY",
     },
     {
       id: 2,
       university: "Example Institute of Technology",
       degree: "MSc Software Engineering",
       startDate: "2021-09",
-      endDate: "2023-09",
-      city: "Manchester",
+      endDate: "2023-06",
+      city: "Los Angeles, CA",
+    },
+  ],
+  experience: [
+    {
+      id: 102,
+      company: "Matrix Systems",
+      position: "Software Engineer",
+      startDate: "2021-07",
+      endDate: "2023-06",
+      city: "Miami, FL",
+      responsibilities: [
+        "Implemented core features and API integrations for client-facing products",
+        "Authored unit and integration tests to improve reliability",
+        "Collaborated with product and UX teams to refine requirements and delivery",
+      ],
+    },
+    {
+      id: 101,
+      company: "NeoTech Solutions",
+      position: "Senior Software Engineer",
+      startDate: "2023-07",
+      endDate: "2023-12",
+      city: "Los Angeles, CA",
+      responsibilities: [
+        "Led cross-functional teams to design and deliver scalable web applications",
+        "Defined system architecture and mentored junior engineers on best practices",
+        "Coordinated deployments, CI/CD pipelines, and performance optimizations",
+      ],
     },
   ],
 };
