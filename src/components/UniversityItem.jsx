@@ -3,6 +3,22 @@ import FormInput from "./FormInput";
 
 import { useState } from "react";
 
+/**
+ * Renders a single editable education entry.
+ *
+ * Displays a toggleable header and a controlled form for university details.
+ * Open state is initialized from the currently selected education id.
+ *
+ * @param {number|null} openEducationId - Id of the education item initially expanded
+ * @param {Function} handleUniversityChange - Updates a field on this education item
+ * @param {Function} handleDeleteUniversity - Removes this education item
+ * @param {number} id - Education item identifier
+ * @param {string} university - University name
+ * @param {string} degree - Degree title
+ * @param {string} startDate - Start date (YYYY-MM)
+ * @param {string} endDate - End date (YYYY-MM)
+ * @param {string} city - City of the institution
+ */
 export default function UniversityItem({
   openEducationId,
   handleUniversityChange,
@@ -18,10 +34,7 @@ export default function UniversityItem({
 
   return (
     <div className="university-item">
-      <button
-        className="university-item-button"
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <button className="university-item-button" onClick={() => setIsOpen(!isOpen)}>
         {university}
       </button>
       <form className={isOpen ? "university-form open" : "university-form"}>

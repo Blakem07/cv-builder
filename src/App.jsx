@@ -3,6 +3,9 @@ import InputForm from "./components/InputForm";
 import OutputCV from "./components/OutputCV";
 import "./App.css";
 
+/**
+ * Default CV data used to initialize application state.
+ */
 const defaultForm = {
   name: "Thomas A. Anderson",
   email: "thomas.anderson@gmail.com",
@@ -56,17 +59,20 @@ const defaultForm = {
   ],
 };
 
+/**
+ * Application entry point.
+ *
+ * Manages CV form state and coordinates input and preview rendering.
+ */
 function App() {
   const [form, setForm] = useState(defaultForm);
   const [openEducationId, setOpenEducationId] = useState(null);
 
   /**
-   * Handles changes to the form fields by updating the specific field in the form state.
+   * Updates a top-level form field.
    *
-   * @param {React.ChangeEvent<HTMLInputElement>} e - The event object generated when an input field changes.
-   * @param {string} field - The name of the field to be updated (e.g., "name", "email", etc.).
-   *
-   * @returns {void} This function does not return anything; it updates the form state directly.
+   * @param {React.ChangeEvent<HTMLInputElement>} e - Input change event
+   * @param {string} field - Form field key to update
    */
   function handleFormChange(e, field) {
     let prevForm = { ...form };
@@ -75,6 +81,13 @@ function App() {
     setForm(prevForm);
   }
 
+  /**
+   * Updates a field on a specific education entry.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e - Input change event
+   * @param {number} id - Education item identifier
+   * @param {string} field - Education field key to update
+   */
   function handleUniversityChange(e, id, field) {
     const value = e.target.value;
 
@@ -86,6 +99,12 @@ function App() {
     }));
   }
 
+  /**
+   * Removes an education entry from the form.
+   *
+   * @param {React.SyntheticEvent} e - Triggering event
+   * @param {number} id - Education item identifier
+   */
   function handleDeleteUniversity(e, id) {
     e.preventDefault();
 
@@ -95,6 +114,9 @@ function App() {
     }));
   }
 
+  /**
+   * Appends a new education entry and expands it.
+   */
   function handleAddUniversity() {
     const newUniversity = {
       id: Date.now(),

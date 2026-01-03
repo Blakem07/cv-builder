@@ -1,6 +1,14 @@
 import "../styles/PersonalDetails.css";
 import FormInput from "./FormInput";
 
+/**
+ * Renders the personal details section of the CV form.
+ *
+ * Displays controlled inputs for basic contact information.
+ *
+ * @param {Object} form - Current form state containing personal details
+ * @param {Function} onChange - Handler for updating top-level form fields
+ */
 export default function PersonalDetails({ form, onChange }) {
   return (
     <form className="personal-details">
