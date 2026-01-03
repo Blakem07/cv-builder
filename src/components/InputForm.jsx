@@ -4,6 +4,7 @@ import ExpandableSection from "./ExpandableSection";
 import ItemSection from "./ItemSection";
 import UniversityItem from "./UniversityItem";
 import awardSvg from "../assets/award.svg";
+import Item from "./Item.jsx";
 
 // Used by ItemSection to render UniversityItems from form.education
 const renderUniversityItem = (
@@ -66,6 +67,7 @@ export default function InputForm({
           />
         }
       />
+      <Item />
     </div>
   );
 }
