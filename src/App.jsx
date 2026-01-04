@@ -82,40 +82,59 @@ function App() {
   }
 
   /**
-   * Updates a field on a specific education entry.
+   * Generic immutable item adder for array-based form sections used by handlers.
    *
-   * @param {React.ChangeEvent<HTMLInputElement>} e - Input change event
-   * @param {number} id - Education item identifier
-   * @param {string} field - Education field key to update
+   * Adds a new entry object inside the named array on the form state by
+   * recreating the old array and including the new entry amongst the items
+   *
+   * @param {string} itemArrayName - E.g education or experience - allowing access to form properties
+   * @param {Object} newEntry - Containing details experience/education item.
    */
-  function handleUniversityChange(e, id, field) {
-    const value = e.target.value;
-
+  function itemEntryAdd(itemArrayName, newEntry) {
     setForm((prevForm) => ({
       ...prevForm,
-      education: prevForm.education.map((edu) =>
-        edu.id === id ? { ...edu, [field]: value } : edu
+      [itemArrayName]: [...prevForm[itemArrayName], newEntry],
+    }));
+  }
+
+  /**
+   * Generic immutable updater for array-based form sections used by handlers.
+   *
+   * Replaces one object inside a named array on the form state
+   * by matching `id` and updating a single field.
+   *
+   * @param {string} itemArrayName - E.g education or experience - allowing access to form properties
+   * @param {string} value - New value to assign
+   * @param {number} id - Identifier of the specifc entry object
+   * @param {string} field - Property name of the entry e.g, university, startDate, endDate
+   */
+  function itemEntryChange(itemArrayName, value, id, field) {
+    setForm((prevForm) => ({
+      ...prevForm,
+      [itemArrayName]: prevForm[itemArrayName].map((item) =>
+        item.id === id ? { ...item, [field]: value } : item
       ),
     }));
   }
 
   /**
-   * Removes an education entry from the form.
+   * Generic immutable deleter for array-based form sections used by handlers,
    *
-   * @param {React.SyntheticEvent} e - Triggering event
-   * @param {number} id - Education item identifier
+   * Deletes one object inside names array on the form state
+   * by matching `id` and deleting a single item.
+   *
    */
-  function handleDeleteUniversity(e, id) {
-    e.preventDefault();
-
+  function itemEntryDelete(itemArrayName, id) {
     setForm((prevForm) => ({
       ...prevForm,
-      education: prevForm.education.filter((edu) => edu.id !== id),
+      [itemArrayName]: prevForm[itemArrayName].filter((edu) => edu.id !== id),
     }));
   }
 
   /**
    * Appends a new education entry and expands it.
+   *
+   * Delegates item addition to the generic item entry adder.
    */
   function handleAddUniversity() {
     const newUniversity = {
@@ -127,12 +146,38 @@ function App() {
       city: "",
     };
 
-    setForm((prevForm) => ({
-      ...prevForm,
-      education: [...prevForm.education, newUniversity],
-    }));
+    itemEntryAdd("education", newUniversity);
 
     setOpenEducationId(newUniversity.id);
+  }
+
+  /**
+   * Handles input changes for an education entry field.
+   *
+   * Extracts the input value and delegates the update
+   * to the generic item entry updater.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e
+   * @param {number} id - Education entry identifier
+   * @param {string} field - Field name to update on the entry
+   */
+  function handleUniversityChange(e, id, field) {
+    const value = e.target.value;
+    itemEntryChange("education", value, id, field);
+  }
+
+  /**
+   * Removes an education entry from the form.
+   *
+   * Delegates the deletion to the generic item
+   * entry deleter.
+   *
+   * @param {React.SyntheticEvent} e - Triggering event
+   * @param {number} id - Education item identifier
+   */
+  function handleDeleteUniversity(e, id) {
+    e.preventDefault();
+    itemEntryDelete("education", id);
   }
 
   return (
