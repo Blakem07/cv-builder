@@ -15,8 +15,8 @@ import { useState } from "react";
  *
  * @returns {JSX.Element}
  */
-export default function Item({ id, itemName, formInputs, onDelete }) {
-  const [isOpen, setState] = useState(false);
+export default function Item({ id, openItemId, itemName, formInputs, onDelete }) {
+  const [isOpen, setState] = useState(openItemId === id);
   return (
     <div>
       <button className="item-button" onClick={() => setState(!isOpen)}>
@@ -29,7 +29,7 @@ export default function Item({ id, itemName, formInputs, onDelete }) {
         {formInputs.map((input) => {
           return (
             <FormInput
-              key={id}
+              key={`${id}-${input.field}`}
               type={input.type}
               field={input.field}
               placeholder={input.placeholder}

@@ -1,27 +1,25 @@
 /**
- * Renders a generic list section for form-based collections.
+ * Generic list section renderer for array-based form collections.
  *
- * Delegates all item rendering and interaction logic to the parent
- * via the `renderItem` function.
+ * Renders a collection of items and delegates all item rendering
+ * and interaction behavior to the parent via render callbacks.
  *
- * Used for sections such as education or professional experience.
- *
- * @param {Array} items - Collection of items to render (e.g. form.education)
- * @param {Function} renderItem - Parent-provided render function for each item
- * @param {string} itemClassName - CSS class applied to the container
- * @param {Function} handleAddItem - Handler to append a new item
- * @param {number} openContainerId - Identifier used by items to determine open state
- * @param {Function} handleChangeItem - Handler for updating an item
- * @param {Function} handleDeleteItem - Handler for removing an item
+ * @param {Array<Object>} items - Collection of entry objects to render
+ * @param {Function} renderItem - Render function for a single item
+ * @param {string} itemClassName - CSS class applied to the section container
+ * @param {Function} handleAddItem - Callback to append a new item
+ * @param {number|null} openItemId - Identifier indicating the expanded item
+ * @param {Function} handleChangeItem - Delegated item update handler
+ * @param {Function} handleDeleteItem - Delegated item delete handler
  *
  * @returns {JSX.Element}
  */
 export default function ItemSection({
+  openItemId,
   items = [],
   renderItem,
   itemClassName,
   handleAddItem,
-  openContainerId,
   handleChangeItem,
   handleDeleteItem,
 }) {
@@ -30,7 +28,7 @@ export default function ItemSection({
       {items.map((item) => {
         return (
           <div key={item.id}>
-            {renderItem(item, openContainerId, handleChangeItem, handleDeleteItem)}
+            {renderItem(item, openItemId, handleChangeItem, handleDeleteItem)}
           </div>
         );
       })}

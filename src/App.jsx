@@ -37,11 +37,11 @@ const defaultForm = {
       startDate: "2021-07",
       endDate: "2023-06",
       city: "Miami, FL",
-      responsibilities: [
-        "Implemented core features and API integrations for client-facing products",
-        "Authored unit and integration tests to improve reliability",
-        "Collaborated with product and UX teams to refine requirements and delivery",
-      ],
+      responsibilities: `
+        Implemented core features and API integrations for client-facing products.
+        Authored unit and integration tests to improve reliability.
+        Collaborated with product and UX teams to refine requirements and delivery.
+        `,
     },
     {
       id: 101,
@@ -50,11 +50,11 @@ const defaultForm = {
       startDate: "2023-07",
       endDate: "2023-12",
       city: "Los Angeles, CA",
-      responsibilities: [
-        "Led cross-functional teams to design and deliver scalable web applications",
-        "Defined system architecture and mentored junior engineers on best practices",
-        "Coordinated deployments, CI/CD pipelines, and performance optimizations",
-      ],
+      responsibilities: `
+        Led cross-functional teams to design and deliver scalable web applications.
+        Defined system architecture and mentored junior engineers on best practices.
+        Coordinated deployments, CI/CD pipelines, and performance optimizations.
+        `,
     },
   ],
 };
@@ -67,6 +67,7 @@ const defaultForm = {
 function App() {
   const [form, setForm] = useState(defaultForm);
   const [openEducationId, setOpenEducationId] = useState(null);
+  const [openExperienceId, setOpenExperienceId] = useState(null);
 
   /**
    * Updates a top-level form field.
@@ -180,6 +181,27 @@ function App() {
     itemEntryDelete("education", id);
   }
 
+  /**
+   * Appends a new experience entry and expands it.
+   *
+   * Delegates item addition to the generic item entry adder.
+   */
+  function handleAddExperience() {
+    const newExperience = {
+      id: Date.now(),
+      company: "",
+      position: "",
+      responsibilities: ``,
+      startDate: "",
+      endDate: "",
+      city: "",
+    };
+
+    itemEntryAdd("experience", newExperience);
+
+    setOpenExperienceId(newExperience.id);
+  }
+
   return (
     <>
       <InputForm
@@ -189,6 +211,8 @@ function App() {
         handleUniversityChange={handleUniversityChange}
         handleDeleteUniversity={handleDeleteUniversity}
         handleAddUniversity={handleAddUniversity}
+        openExperienceId={openExperienceId}
+        handleAddExperience={handleAddExperience}
       ></InputForm>
       <OutputCV form={form}></OutputCV>
     </>

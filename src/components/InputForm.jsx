@@ -28,10 +28,11 @@ const renderUniversityItem = (
   );
 };
 
-const renderExperienceItem = (item, openContainerId, onChange, onDelete) => {
+const renderExperienceItem = (item, openItemId, onChange, onDelete) => {
   return (
     <ExperienceItem
       id={item.id}
+      openItemId={openItemId}
       company={item.company}
       position={item.position}
       responsibilities={item.responsibilities}
@@ -44,16 +45,23 @@ const renderExperienceItem = (item, openContainerId, onChange, onDelete) => {
 };
 
 /**
- * Renders the CV input sections currently implemented by this form.
+ * Renders the CV input form sections.
  *
- * Composed of Personal Details and an Education section.
+ * Includes:
+ * - Personal details
+ * - Education section (expandable)
+ * - Experience section (expandable)
  *
- * @param {Object} form - CV data (includes `education`)
+ * @param {Object} form - CV data object (includes `education` and `experience`)
  * @param {Function} onChange - Updates personal details fields
- * @param {number|null} openEducationId - Id of the education item currently expanded (or null)
- * @param {Function} handleAddUniversity - Appends a new education item
- * @param {Function} handleUniversityChange - Updates an education item
- * @param {Function} handleDeleteUniversity - Removes an education item
+ *
+ * @param {number|null} openEducationId - Expanded education entry id (or null)
+ * @param {Function} handleAddUniversity - Appends a new education entry
+ * @param {Function} handleUniversityChange - Updates an education entry field
+ * @param {Function} handleDeleteUniversity - Removes an education entry
+ *
+ * @param {number|null} openExperienceId - Expanded experience entry id (or null)
+ * @param {Function} handleAddExperience - Appends a new experience entry
  *
  * @returns {JSX.Element}
  */
@@ -64,6 +72,8 @@ export default function InputForm({
   handleUniversityChange,
   handleDeleteUniversity,
   handleAddUniversity,
+  openExperienceId,
+  handleAddExperience,
 }) {
   return (
     <div className="input-form-container">
@@ -76,7 +86,7 @@ export default function InputForm({
             items={form.education}
             renderItem={renderUniversityItem}
             handleAddItem={handleAddUniversity}
-            openContainerId={openEducationId}
+            openItemId={openEducationId}
             handleChangeItem={handleUniversityChange}
             handleDeleteItem={handleDeleteUniversity}
           />
@@ -85,7 +95,14 @@ export default function InputForm({
       <ExpandableSection
         title="Experience"
         icon={awardSvg}
-        content={<ItemSection items={form.experience} renderItem={renderExperienceItem} />}
+        content={
+          <ItemSection
+            openItemId={openExperienceId}
+            items={form.experience}
+            renderItem={renderExperienceItem}
+            handleAddItem={handleAddExperience}
+          />
+        }
       />
     </div>
   );

@@ -1,23 +1,26 @@
 import Item from "./Item";
 
 /**
- * A clickable item allowing users to input details about an experience.
+ * Experience entry component.
  *
- * This is a composed wrapper of the `Item` component.
+ * Wraps the generic `Item` component and supplies
+ * experience-specific fields and values.
  *
- * @param {Number} id - ID of the specific experience within form object.
- * @param {String} company
- * @param {String} position
- * @param {String} responsibilities
- * @param {String} startDate
- * @param {String} endDate
- * @param {Function} onChange - Updates the form, passed down by `App`.
- * @param {Function} onDelete - Deletes the form entry, passed down by `App`.
+ * @param {number} id - Identifier of the experience entry
+ * @param {number} openItemId - Identifier of the currently expanded entry
+ * @param {string} company - Company name
+ * @param {string} position - Role title
+ * @param {string} responsibilities - Responsibilities description
+ * @param {string} startDate - Start date (YYYY-MM)
+ * @param {string} endDate - End date (YYYY-MM)
+ * @param {function} onChange - Field change handler
+ * @param {function} onDelete - Entry deletion handler
  *
- * @return {JSX.Element}
+ * @returns {JSX.Element}
  */
 export default function ExperienceItem({
   id,
+  openItemId,
   company,
   position,
   responsibilities,
@@ -64,5 +67,13 @@ export default function ExperienceItem({
     },
   ];
 
-  return <Item id={id} itemName={company} formInputs={formInputs} onDelete={onDelete} />;
+  return (
+    <Item
+      id={id}
+      openItemId={openItemId}
+      itemName={company}
+      formInputs={formInputs}
+      onDelete={onDelete}
+    />
+  );
 }
