@@ -6,8 +6,8 @@ import Item from "./Item";
  * This is a composed wrapper of the `Item` component.
  *
  * @param {Number} id - ID of the specific experience within form object.
- * @param {String} institution
- * @param {String} achievement
+ * @param {String} company
+ * @param {String} position
  * @param {String} responsibilities
  * @param {String} startDate
  * @param {String} endDate
@@ -64,5 +64,5 @@ export default function ExperienceItem({
     },
   ];
 
-  return <Item id={id} formInputs={formInputs} onDelete={onDelete} />;
+  return <Item id={id} itemName={company} formInputs={formInputs} onDelete={onDelete} />;
 }

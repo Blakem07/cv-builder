@@ -7,7 +7,12 @@ import ExperienceItem from "./ExperienceItem";
 import awardSvg from "../assets/award.svg";
 
 // Used by ItemSection to render UniversityItems from form.education
-const renderUniversityItem = (item, openEducationId, handleUniversityChange, handleDeleteUniversity) => {
+const renderUniversityItem = (
+  item,
+  openEducationId,
+  handleUniversityChange,
+  handleDeleteUniversity
+) => {
   return (
     <UniversityItem
       id={item.id}
@@ -19,6 +24,21 @@ const renderUniversityItem = (item, openEducationId, handleUniversityChange, han
       startDate={item.startDate}
       endDate={item.endDate}
       city={item.city}
+    />
+  );
+};
+
+const renderExperienceItem = (item, openContainerId, onChange, onDelete) => {
+  return (
+    <ExperienceItem
+      id={item.id}
+      company={item.company}
+      position={item.position}
+      responsibilities={item.responsibilities}
+      startDate={item.startDate}
+      endDate={item.endDate}
+      onChange={onChange}
+      onDelete={onDelete}
     />
   );
 };
@@ -62,7 +82,11 @@ export default function InputForm({
           />
         }
       />
-      <ExperienceItem />
+      <ExpandableSection
+        title="Experience"
+        icon={awardSvg}
+        content={<ItemSection items={form.experience} renderItem={renderExperienceItem} />}
+      />
     </div>
   );
 }
