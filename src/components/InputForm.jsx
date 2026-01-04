@@ -3,15 +3,11 @@ import PersonalDetails from "./PersonalDetails";
 import ExpandableSection from "./ExpandableSection";
 import ItemSection from "./ItemSection";
 import UniversityItem from "./UniversityItem";
+import ExperienceItem from "./ExperienceItem";
 import awardSvg from "../assets/award.svg";
 
 // Used by ItemSection to render UniversityItems from form.education
-const renderUniversityItem = (
-  item,
-  openEducationId,
-  handleUniversityChange,
-  handleDeleteUniversity
-) => {
+const renderUniversityItem = (item, openEducationId, handleUniversityChange, handleDeleteUniversity) => {
   return (
     <UniversityItem
       id={item.id}
@@ -66,6 +62,7 @@ export default function InputForm({
           />
         }
       />
+      <ExperienceItem />
     </div>
   );
 }

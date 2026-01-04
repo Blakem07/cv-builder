@@ -6,16 +6,17 @@ import { useState } from "react";
 /**
  * A generic clickable which item that has two states.
  *
- * A `closed` state where the name of the item is visible 
+ * A `closed` state where the name of the item is visible
  * and an `open` state which expands to a form.
  *
+ * @param {Number} id - ID of the variable within form object used to create the item.
  * @param {Array[Dict]} formInputs - Mapped to create inputs using the FormInput component
  *
  * @returns {JSX.Element}
  */
-export default function Item({ formInputs }) {
+export default function Item({ id, formInputs, onDelete }) {
   const [isOpen, setState] = useState(false);
-    return (
+  return (
     <div>
       <button className="item-button" onClick={() => setState(!isOpen)}>
         Item Refactor
@@ -27,7 +28,7 @@ export default function Item({ formInputs }) {
         {formInputs.map((input) => {
           return (
             <FormInput
-              key={input.id}
+              key={id}
               type={input.type}
               field={input.field}
               placeholder={input.placeholder}
@@ -36,6 +37,7 @@ export default function Item({ formInputs }) {
             />
           );
         })}
+        <button onClick={onDelete}>Delete</button>
       </form>
     </div>
   );
