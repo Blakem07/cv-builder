@@ -16,9 +16,10 @@ export default function FormInput({ value, onChange, field, type, placeholder })
       <input
         type={type}
         className="form-control"
-        onChange={(e) => onChange(e, field)}
+        onChange={onChange}
         value={value}
         placeholder={placeholder}
+        name={field}
       />
     </div>
   );

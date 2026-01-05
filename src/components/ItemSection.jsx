@@ -1,16 +1,17 @@
 /**
  * Generic list section renderer for array-based form collections.
  *
- * Renders a collection of items and delegates all item rendering
- * and interaction behavior to the parent via render callbacks.
+ * Renders a list of items and delegates item rendering and mutations
+ * to the parent via callbacks.
  *
- * @param {Array<Object>} items - Collection of entry objects to render
- * @param {Function} renderItem - Render function for a single item
- * @param {string} itemClassName - CSS class applied to the section container
- * @param {Function} handleAddItem - Callback to append a new item
- * @param {number|null} openItemId - Identifier indicating the expanded item
- * @param {Function} handleChangeItem - Delegated item update handler
- * @param {Function} handleDeleteItem - Delegated item delete handler
+ * @param {Object} props
+ * @param {number|null} props.openItemId - Id of the currently expanded item
+ * @param {Array<Object>} props.items - Collection of entry objects
+ * @param {Function} props.renderItem - (item, openItemId, onChange, onDelete) => JSX
+ * @param {string} props.itemClassName - CSS class for the container
+ * @param {Function} props.onAdd - Appends a new item
+ * @param {Function} props.onChange - Updates a field on an item
+ * @param {Function} props.onDelete - Deletes an item
  *
  * @returns {JSX.Element}
  */
@@ -19,20 +20,16 @@ export default function ItemSection({
   items = [],
   renderItem,
   itemClassName,
-  handleAddItem,
-  handleChangeItem,
-  handleDeleteItem,
+  onAdd,
+  onChange,
+  onDelete,
 }) {
   return (
     <div className={itemClassName}>
-      {items.map((item) => {
-        return (
-          <div key={item.id}>
-            {renderItem(item, openItemId, handleChangeItem, handleDeleteItem)}
-          </div>
-        );
-      })}
-      <button onClick={handleAddItem}>Add University</button>
+      {items.map((item) => (
+        <div key={item.id}>{renderItem(item, openItemId, onChange, onDelete)}</div>
+      ))}
+      <button onClick={onAdd}>Add</button>
     </div>
   );
 }

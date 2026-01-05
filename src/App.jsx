@@ -14,7 +14,7 @@ const defaultForm = {
   education: [
     {
       id: 1,
-      university: "University of Example",
+      institution: "University of Example",
       degree: "BSc Computer Science",
       startDate: "2018-09",
       endDate: "2021-06",
@@ -22,7 +22,7 @@ const defaultForm = {
     },
     {
       id: 2,
-      university: "Example Institute of Technology",
+      institution: "Example Institute of Technology",
       degree: "MSc Software Engineering",
       startDate: "2021-09",
       endDate: "2023-06",
@@ -140,7 +140,7 @@ function App() {
   function handleAddUniversity() {
     const newUniversity = {
       id: Date.now(),
-      university: "",
+      institution: "",
       degree: "",
       startDate: "",
       endDate: "",
@@ -162,9 +162,9 @@ function App() {
    * @param {number} id - Education entry identifier
    * @param {string} field - Field name to update on the entry
    */
-  function handleUniversityChange(e, id, field) {
+  function handleUniversityChange(e, itemArrayName, id, field) {
     const value = e.target.value;
-    itemEntryChange("education", value, id, field);
+    itemEntryChange(itemArrayName, value, id, field);
   }
 
   /**
@@ -213,8 +213,8 @@ function App() {
         handleAddUniversity={handleAddUniversity}
         openExperienceId={openExperienceId}
         handleAddExperience={handleAddExperience}
-      ></InputForm>
-      <OutputCV form={form}></OutputCV>
+      />
+      <OutputCV form={form} />
     </>
   );
 }
