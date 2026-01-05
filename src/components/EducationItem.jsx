@@ -78,7 +78,7 @@ export default function EducationItem({
       openItemId={openItemId}
       itemName={institution}
       formInputs={formInputs}
-      onDelete={(e) => onDelete(e, id)}
+      onDelete={(e) => onDelete(e, "education", id)}
     />
   );
 }

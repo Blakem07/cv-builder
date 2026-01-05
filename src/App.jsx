@@ -153,7 +153,7 @@ function App() {
   }
 
   /**
-   * Handles input changes for an entry field.
+   * Generic function handling input changes for an entry field.
    *
    * Extracts the input value and delegates the update
    * to the generic item entry updater.
@@ -168,7 +168,7 @@ function App() {
   }
 
   /**
-   * Removes an education entry from the form.
+   * Generic function to remove an entry from the form.
    *
    * Delegates the deletion to the generic item
    * entry deleter.
@@ -176,9 +176,9 @@ function App() {
    * @param {React.SyntheticEvent} e - Triggering event
    * @param {number} id - Education item identifier
    */
-  function handleDeleteUniversity(e, id) {
+  function handleEntryDelete(e, itemArrayName, id) {
     e.preventDefault();
-    itemEntryDelete("education", id);
+    itemEntryDelete(itemArrayName, id);
   }
 
   /**
@@ -209,7 +209,7 @@ function App() {
         onChange={handleFormChange}
         openEducationId={openEducationId}
         handleEntryChange={handleEntryChange}
-        handleDeleteUniversity={handleDeleteUniversity}
+        handleEntryDelete={handleEntryDelete}
         handleAddUniversity={handleAddUniversity}
         openExperienceId={openExperienceId}
         handleAddExperience={handleAddExperience}
