@@ -5,6 +5,7 @@ import ItemSection from "./ItemSection";
 import EducationItem from "./EducationItem";
 import ExperienceItem from "./ExperienceItem";
 import awardSvg from "../assets/award.svg";
+import briefcaseSvg from "../assets/briefcase.svg";
 
 // Used by ItemSection to render EducationItems from form.education
 const renderEducationItem = (item, openItemId, onChange, onDelete) => {
@@ -43,15 +44,14 @@ export default function InputForm({
   form,
   onChange,
 
-  openEducationId,
   handleEntryChange,
   handleEntryDelete,
+
+  openEducationId,
   handleAddUniversity,
 
   openExperienceId,
   handleAddExperience,
-  handleExperienceChange,
-  handleDeleteExperience,
 }) {
   return (
     <div className="input-form-container">
@@ -74,15 +74,15 @@ export default function InputForm({
 
       <ExpandableSection
         title="Experience"
-        icon={awardSvg}
+        icon={briefcaseSvg}
         content={
           <ItemSection
             items={form.experience}
             renderItem={renderExperienceItem}
             openItemId={openExperienceId}
             onAdd={handleAddExperience}
-            onChange={handleExperienceChange}
-            onDelete={handleDeleteExperience}
+            onChange={handleEntryChange}
+            onDelete={handleEntryDelete}
           />
         }
       />

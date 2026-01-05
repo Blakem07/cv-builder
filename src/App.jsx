@@ -37,11 +37,10 @@ const defaultForm = {
       startDate: "2021-07",
       endDate: "2023-06",
       city: "Miami, FL",
-      responsibilities: `
-        Implemented core features and API integrations for client-facing products.
-        Authored unit and integration tests to improve reliability.
-        Collaborated with product and UX teams to refine requirements and delivery.
-        `,
+      responsibilities:
+        "Implemented core features and API integrations for client-facing products.\n" +
+        "Authored unit and integration tests to improve reliability.\n" +
+        "Collaborated with product and UX teams to refine requirements and delivery.",
     },
     {
       id: 101,
@@ -50,11 +49,10 @@ const defaultForm = {
       startDate: "2023-07",
       endDate: "2023-12",
       city: "Los Angeles, CA",
-      responsibilities: `
-        Led cross-functional teams to design and deliver scalable web applications.
-        Defined system architecture and mentored junior engineers on best practices.
-        Coordinated deployments, CI/CD pipelines, and performance optimizations.
-        `,
+      responsibilities:
+        "Implemented core features and API integrations for client-facing products.\n" +
+        "Authored unit and integration tests to improve reliability.\n" +
+        "Collaborated with product and UX teams to refine requirements and delivery.",
     },
   ],
 };
@@ -207,9 +205,9 @@ function App() {
       <InputForm
         form={form}
         onChange={handleFormChange}
-        openEducationId={openEducationId}
         handleEntryChange={handleEntryChange}
         handleEntryDelete={handleEntryDelete}
+        openEducationId={openEducationId}
         handleAddUniversity={handleAddUniversity}
         openExperienceId={openExperienceId}
         handleAddExperience={handleAddExperience}

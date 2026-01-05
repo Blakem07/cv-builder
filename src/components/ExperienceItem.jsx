@@ -29,41 +29,43 @@ export default function ExperienceItem({
   onChange,
   onDelete,
 }) {
+  const handleFieldChange = (field) => (e) => onChange(e, "experience", id, field);
+
   const formInputs = [
     {
       type: "text",
       field: "company",
       placeholder: "Company",
       value: company,
-      onChange: onChange,
+      onChange: handleFieldChange("company"),
     },
     {
       type: "text",
       field: "position",
       placeholder: "Position",
       value: position,
-      onChange: onChange,
+      onChange: handleFieldChange("position"),
     },
     {
-      type: "text",
+      type: "textArea",
       field: "responsibilities",
       placeholder: "Responsibilities",
       value: responsibilities,
-      onChange: onChange,
+      onChange: handleFieldChange("responsibilities"),
     },
     {
       type: "month",
       field: "startDate",
       placeholder: "Start Date",
       value: startDate,
-      onChange: onChange,
+      onChange: handleFieldChange("startDate"),
     },
     {
       type: "month",
       field: "endDate",
       placeholder: "End Date",
       value: endDate,
-      onChange: onChange,
+      onChange: handleFieldChange("endDate"),
     },
   ];
 
@@ -73,7 +75,7 @@ export default function ExperienceItem({
       openItemId={openItemId}
       itemName={company}
       formInputs={formInputs}
-      onDelete={onDelete}
+      onDelete={(e) => onDelete(e, "experience", id)}
     />
   );
 }
