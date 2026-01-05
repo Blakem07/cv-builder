@@ -44,7 +44,7 @@ export default function InputForm({
   onChange,
 
   openEducationId,
-  handleUniversityChange,
+  handleEntryChange,
   handleDeleteUniversity,
   handleAddUniversity,
 
@@ -66,7 +66,7 @@ export default function InputForm({
             renderItem={renderEducationItem}
             openItemId={openEducationId}
             onAdd={handleAddUniversity}
-            onChange={handleUniversityChange}
+            onChange={handleEntryChange}
             onDelete={handleDeleteUniversity}
           />
         }

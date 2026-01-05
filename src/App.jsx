@@ -153,7 +153,7 @@ function App() {
   }
 
   /**
-   * Handles input changes for an education entry field.
+   * Handles input changes for an entry field.
    *
    * Extracts the input value and delegates the update
    * to the generic item entry updater.
@@ -162,7 +162,7 @@ function App() {
    * @param {number} id - Education entry identifier
    * @param {string} field - Field name to update on the entry
    */
-  function handleUniversityChange(e, itemArrayName, id, field) {
+  function handleEntryChange(e, itemArrayName, id, field) {
     const value = e.target.value;
     itemEntryChange(itemArrayName, value, id, field);
   }
@@ -208,7 +208,7 @@ function App() {
         form={form}
         onChange={handleFormChange}
         openEducationId={openEducationId}
-        handleUniversityChange={handleUniversityChange}
+        handleEntryChange={handleEntryChange}
         handleDeleteUniversity={handleDeleteUniversity}
         handleAddUniversity={handleAddUniversity}
         openExperienceId={openExperienceId}
