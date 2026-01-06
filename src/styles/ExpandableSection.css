@@ -1,0 +1,47 @@
+.expand-button {
+  height: auto;
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-3xl);
+  font-weight: bold;
+  background-color: var(--secondary-color);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.expand-button div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.award-icon {
+  height: 2rem;
+}
+
+/* Icon rotation */
+
+.icon.open {
+  transition: 0.3s ease;
+  transform: rotate(180deg);
+}
+
+/* Sliding content */
+.content {
+  display: flex;
+  flex-direction: column;
+
+  max-height: 0; /* start collapsed */
+  overflow: hidden; /* hide the content when collapsed */
+  opacity: 0; /* fade in/out */
+  transform: translateY(-10px); /* slight slide */
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.content.open {
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(5px);
+}

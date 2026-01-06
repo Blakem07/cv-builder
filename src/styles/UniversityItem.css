@@ -1,0 +1,17 @@
+.university-item-button {
+  height: auto;
+  min-height: 2.5rem;
+  width: 100%;
+  border-radius: 5px;
+
+  background-color: var(--secondary-color);
+  font-size: var(--font-size-2xl);
+}
+
+.university-form {
+  display: none;
+}
+
+.university-form.open {
+  display: block;
+}

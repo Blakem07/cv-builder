@@ -1,0 +1,58 @@
+.cv-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* left column */
+.cv-item .left {
+  flex: 0 0 170px;
+  text-align: right;
+}
+
+/* right column */
+.cv-item .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* normalize element offsets */
+.cv-item h4,
+.cv-item p {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* typography */
+.cv-item-dates {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.cv-item-location {
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.cv-item-institution {
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.cv-item-achievement {
+  font-size: 0.95rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.cv-item-detail {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
