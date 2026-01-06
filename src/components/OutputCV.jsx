@@ -31,7 +31,7 @@ export default function OutputCV({ form }) {
             {form.education.map((edu) => (
               <CVItem
                 key={edu.id}
-                institution={`${edu.university}`}
+                institution={`${edu.institution}`}
                 achievement={edu.degree}
                 detail=""
                 startDate={edu.startDate}

@@ -14,7 +14,7 @@ const defaultForm = {
   education: [
     {
       id: 1,
-      university: "University of Example",
+      institution: "Zion Polytechnic University",
       degree: "BSc Computer Science",
       startDate: "2018-09",
       endDate: "2021-06",
@@ -22,7 +22,7 @@ const defaultForm = {
     },
     {
       id: 2,
-      university: "Example Institute of Technology",
+      institution: "Nebuchadnezzar Institute of Technology",
       degree: "MSc Software Engineering",
       startDate: "2021-09",
       endDate: "2023-06",
@@ -37,11 +37,10 @@ const defaultForm = {
       startDate: "2021-07",
       endDate: "2023-06",
       city: "Miami, FL",
-      responsibilities: [
-        "Implemented core features and API integrations for client-facing products",
-        "Authored unit and integration tests to improve reliability",
-        "Collaborated with product and UX teams to refine requirements and delivery",
-      ],
+      responsibilities:
+        "Implemented core features and API integrations for client-facing products.\n" +
+        "Authored unit and integration tests to improve reliability.\n" +
+        "Collaborated with product and UX teams to refine requirements and delivery.",
     },
     {
       id: 101,
@@ -50,11 +49,10 @@ const defaultForm = {
       startDate: "2023-07",
       endDate: "2023-12",
       city: "Los Angeles, CA",
-      responsibilities: [
-        "Led cross-functional teams to design and deliver scalable web applications",
-        "Defined system architecture and mentored junior engineers on best practices",
-        "Coordinated deployments, CI/CD pipelines, and performance optimizations",
-      ],
+      responsibilities:
+        "Implemented core features and API integrations for client-facing products.\n" +
+        "Authored unit and integration tests to improve reliability.\n" +
+        "Collaborated with product and UX teams to refine requirements and delivery.",
     },
   ],
 };
@@ -67,6 +65,7 @@ const defaultForm = {
 function App() {
   const [form, setForm] = useState(defaultForm);
   const [openEducationId, setOpenEducationId] = useState(null);
+  const [openExperienceId, setOpenExperienceId] = useState(null);
 
   /**
    * Updates a top-level form field.
@@ -82,57 +81,123 @@ function App() {
   }
 
   /**
-   * Updates a field on a specific education entry.
+   * Generic immutable item adder for array-based form sections used by handlers.
    *
-   * @param {React.ChangeEvent<HTMLInputElement>} e - Input change event
-   * @param {number} id - Education item identifier
-   * @param {string} field - Education field key to update
+   * Adds a new entry object inside the named array on the form state by
+   * recreating the old array and including the new entry amongst the items
+   *
+   * @param {string} itemArrayName - E.g education or experience - allowing access to form properties
+   * @param {Object} newEntry - Containing details experience/education item.
    */
-  function handleUniversityChange(e, id, field) {
-    const value = e.target.value;
-
+  function itemEntryAdd(itemArrayName, newEntry) {
     setForm((prevForm) => ({
       ...prevForm,
-      education: prevForm.education.map((edu) =>
-        edu.id === id ? { ...edu, [field]: value } : edu
+      [itemArrayName]: [...prevForm[itemArrayName], newEntry],
+    }));
+  }
+
+  /**
+   * Generic immutable updater for array-based form sections used by handlers.
+   *
+   * Replaces one object inside a named array on the form state
+   * by matching `id` and updating a single field.
+   *
+   * @param {string} itemArrayName - E.g education or experience - allowing access to form properties
+   * @param {string} value - New value to assign
+   * @param {number} id - Identifier of the specifc entry object
+   * @param {string} field - Property name of the entry e.g, university, startDate, endDate
+   */
+  function itemEntryChange(itemArrayName, value, id, field) {
+    setForm((prevForm) => ({
+      ...prevForm,
+      [itemArrayName]: prevForm[itemArrayName].map((item) =>
+        item.id === id ? { ...item, [field]: value } : item
       ),
     }));
   }
 
   /**
-   * Removes an education entry from the form.
+   * Generic immutable deleter for array-based form sections used by handlers,
    *
-   * @param {React.SyntheticEvent} e - Triggering event
-   * @param {number} id - Education item identifier
+   * Deletes one object inside names array on the form state
+   * by matching `id` and deleting a single item.
+   *
    */
-  function handleDeleteUniversity(e, id) {
-    e.preventDefault();
-
+  function itemEntryDelete(itemArrayName, id) {
     setForm((prevForm) => ({
       ...prevForm,
-      education: prevForm.education.filter((edu) => edu.id !== id),
+      [itemArrayName]: prevForm[itemArrayName].filter((edu) => edu.id !== id),
     }));
   }
 
   /**
    * Appends a new education entry and expands it.
+   *
+   * Delegates item addition to the generic item entry adder.
    */
   function handleAddUniversity() {
     const newUniversity = {
       id: Date.now(),
-      university: "",
+      institution: "",
       degree: "",
       startDate: "",
       endDate: "",
       city: "",
     };
 
-    setForm((prevForm) => ({
-      ...prevForm,
-      education: [...prevForm.education, newUniversity],
-    }));
+    itemEntryAdd("education", newUniversity);
 
     setOpenEducationId(newUniversity.id);
+  }
+
+  /**
+   * Generic function handling input changes for an entry field.
+   *
+   * Extracts the input value and delegates the update
+   * to the generic item entry updater.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e
+   * @param {number} id - Education entry identifier
+   * @param {string} field - Field name to update on the entry
+   */
+  function handleEntryChange(e, itemArrayName, id, field) {
+    const value = e.target.value;
+    itemEntryChange(itemArrayName, value, id, field);
+  }
+
+  /**
+   * Generic function to remove an entry from the form.
+   *
+   * Delegates the deletion to the generic item
+   * entry deleter.
+   *
+   * @param {React.SyntheticEvent} e - Triggering event
+   * @param {number} id - Education item identifier
+   */
+  function handleEntryDelete(e, itemArrayName, id) {
+    e.preventDefault();
+    itemEntryDelete(itemArrayName, id);
+  }
+
+  /**
+   * Appends a new experience entry and expands it.
+   *
+   * Delegates item addition to the generic item entry adder.
+   */
+  function handleAddExperience() {
+    const newExperience = {
+      id: Date.now(),
+      company: "",
+      position: "",
+      responsibilities: ``,
+      startDate: "",
+      endDate: "",
+      city: "",
+    };
+
+    itemEntryAdd("experience", newExperience);
+
+    setOpenExperienceId(newExperience.id);
   }
 
   return (
@@ -140,12 +205,14 @@ function App() {
       <InputForm
         form={form}
         onChange={handleFormChange}
+        handleEntryChange={handleEntryChange}
+        handleEntryDelete={handleEntryDelete}
         openEducationId={openEducationId}
-        handleUniversityChange={handleUniversityChange}
-        handleDeleteUniversity={handleDeleteUniversity}
         handleAddUniversity={handleAddUniversity}
-      ></InputForm>
-      <OutputCV form={form}></OutputCV>
+        openExperienceId={openExperienceId}
+        handleAddExperience={handleAddExperience}
+      />
+      <OutputCV form={form} />
     </>
   );
 }

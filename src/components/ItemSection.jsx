@@ -1,40 +1,35 @@
 /**
- * Renders a generic list section for form-based collections.
+ * Generic list section renderer for array-based form collections.
  *
- * Delegates all item rendering and interaction logic to the parent
- * via the `renderItem` function.
+ * Renders a list of items and delegates item rendering and mutations
+ * to the parent via callbacks.
  *
- * Used for sections such as education or professional experience.
- *
- * @param {Array} items - Collection of items to render (e.g. form.education)
- * @param {Function} renderItem - Parent-provided render function for each item
- * @param {string} itemClassName - CSS class applied to the container
- * @param {Function} handleAddItem - Handler to append a new item
- * @param {number} openContainerId - Identifier used by items to determine open state
- * @param {Function} handleChangeItem - Handler for updating an item
- * @param {Function} handleDeleteItem - Handler for removing an item
+ * @param {Object} props
+ * @param {number|null} props.openItemId - Id of the currently expanded item
+ * @param {Array<Object>} props.items - Collection of entry objects
+ * @param {Function} props.renderItem - (item, openItemId, onChange, onDelete) => JSX
+ * @param {string} props.itemClassName - CSS class for the container
+ * @param {Function} props.onAdd - Appends a new item
+ * @param {Function} props.onChange - Updates a field on an item
+ * @param {Function} props.onDelete - Deletes an item
  *
  * @returns {JSX.Element}
  */
 export default function ItemSection({
+  openItemId,
   items = [],
   renderItem,
   itemClassName,
-  handleAddItem,
-  openContainerId,
-  handleChangeItem,
-  handleDeleteItem,
+  onAdd,
+  onChange,
+  onDelete,
 }) {
   return (
     <div className={itemClassName}>
-      {items.map((item) => {
-        return (
-          <div key={item.id}>
-            {renderItem(item, openContainerId, handleChangeItem, handleDeleteItem)}
-          </div>
-        );
-      })}
-      <button onClick={handleAddItem}>Add University</button>
+      {items.map((item) => (
+        <div key={item.id}>{renderItem(item, openItemId, onChange, onDelete)}</div>
+      ))}
+      <button onClick={onAdd}>Add</button>
     </div>
   );
 }

@@ -1,0 +1,17 @@
+.item-button {
+  height: auto;
+  min-height: 2.5rem;
+  width: 100%;
+  border-radius: 5px;
+
+  background-color: var(--secondary-color);
+  font-size: var(--font-size-2xl);
+}
+
+.item-form {
+  display: none;
+}
+
+.item-form.open {
+  display: block;
+}
